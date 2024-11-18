@@ -15,6 +15,7 @@ class LoadUpdateView(generic.UpdateView):
 class LoadCreateView(generic.CreateView):
     model = Load
     template_name = "loads/new_load.html"
+    fields = ['origin', 'destination', 'type', 'weight', 'rate']
 
 
 @login_required(login_url="login")

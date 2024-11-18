@@ -1,0 +1,17 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+{{ object }}
+{% endblock head_title %}
+{% block content %}
+<div class="py-5"></div>
+<div class="container">
+    <h1>Complete Profile</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
+{% endblock content %}

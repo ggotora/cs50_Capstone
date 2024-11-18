@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+     "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -143,6 +145,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     
 ]
-
+ACCOUNT_SIGNUP_REDIRECT_URL  = 'main:incomplete_profile'
 LOGIN_REDIRECT_URL = 'main:home'
-SIMPLE_BACKEND_REDIRECT_URL = 'main/update_profile'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
