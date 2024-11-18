@@ -62,7 +62,7 @@ ROOT_URLCONF = 'truckLoaders.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,3 +142,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     
 ]
+
+LOGIN_REDIRECT_URL = 'main:home'
+SIMPLE_BACKEND_REDIRECT_URL = 'main/update_profile'
