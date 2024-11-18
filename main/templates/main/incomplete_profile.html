@@ -1,6 +1,7 @@
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load allauth account %}
+{% load crispy_forms_tags %}
 {% block head_title %}
 {{ object }}
 {% endblock head_title %}
@@ -10,7 +11,7 @@
     <h1>Complete Profile</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form  | crispy}}
         <button type="submit">Update Profile</button>
     </form>
 </div>

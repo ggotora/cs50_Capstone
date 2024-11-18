@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic 
 from loads.models import Load 
 from .models import Profile
 from django.urls import reverse, reverse_lazy
 from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from allauth.account.views import SignupView
+from django.views.decorators.http import require_POST
 
 
 
@@ -28,13 +28,47 @@ class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
         pk = self.kwargs["pk"]
 
         return reverse_lazy('main:profile', kwargs={'pk':pk})
+
+# require_POST('POST')
+def incomplete_profile(request, pk):
+    user = get_object_or_404(Profile, id=request.user.profile.id)
+    form = ProfileForm()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            object = form.save()
+            return redirect(object.get_absolute_url())
+    return render(request, 'main/incomplete_profile.html',{ 'form': form })
+    # user = get_object_or_404(Profile, id=pk)
+    # form = ProfileForm(instance=user)
+    # if request.method == "POST":
+    #    form = ProfileForm(request.POST, instance=user)
+    #    if form.is_valid():
+    #        print(user)
+    #        form.save()
+    #        return redirect(Profile)
+    # form = ProfileForm()
+    # return render(request, 'main/incomplete_profile.html', {'form': form})
+       
+           
     
-def incomplete_profile(request):
     if request.method == "POST":
-        print('posting')
+        form = ProfileForm(request.POST or None)
+        if form.is_valid():
+            user = get_object_or_404(Profile, pk=request.user.id)
+            form.instance.user  = request.user.profile.user
+            form.save()
+            return redirect('main:home')
     form = ProfileForm()
     return render(request, 'main/incomplete_profile.html', {'form': form})
+    # if request.method == "POST":
+        # form = ProfileForm(request.POST or None)
+        # if form.is_valid():
+            # form.instance.user = request.user.id 
+            # form.save()
+            # return redirect('home')
+        
+    # form = ProfileForm()
 
-    # def get_success_url(self):
-    #     pk = self.kwargs["pk"]
-    #     return reverse("main:profile", kwargs={"pk": pk})
+    # return render(request, "main/incomplete_profile.html", {"form": form})
+   

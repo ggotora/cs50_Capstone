@@ -21,6 +21,5 @@ class LoadCreateView(generic.CreateView):
 @login_required(login_url="login")
 def my_loads(request):
     my_loads = Load.objects.filter(owner=request.user.profile)
-    print(my_loads)
     return render(request, 'loads/my_loads.html', {'my_loads': my_loads})
 

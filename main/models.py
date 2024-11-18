@@ -19,7 +19,7 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
     
     def get_absolute_url(self):
-        return reverse("loads:profile_detail", kwargs={"pk": self.pk})
+        return reverse("main:profile", kwargs={"pk": self.pk})
     
 
 def create_user_profile(sender, created,instance,  *args, **kwargs):
