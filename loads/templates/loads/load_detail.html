@@ -1,0 +1,94 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+{{ object }} 
+{% endblock head_title %}
+{% block content %}
+<div class="py-5"></div>
+<div class="container">
+  <h1>{{ object }}</h1>
+  <div class="card-group">
+    <div class="card mx-1" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src={{ object.owner.image.url }}
+            alt="Profile image"
+            class="img-fluid rounded"
+          />
+        
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title m-0">Shipper Details</h5>
+            <p class="card-text m-0">
+              <span class="fw-bold">Contact: </span>{{ object.owner.user.username }}
+            </p>
+            {% if object.owner.organisation %}
+            <p class="m-0">
+              <span class="m-0 fw-bold">Company: </span> {{ object.owner.organisation }}
+            </p>
+            <p class="m-0">
+              <span class="m-0 fw-bold">Phone: </span> {{ object.owner.phone_number }}
+            </p>
+            {% else %}
+            <p class="m-0">
+              <span class="m-0 fw-bold">Company: </span> Incomplete Profile
+            </p>
+            <p class="m-0">
+              <span class="m-0 fw-bold">Phone: </span> No details provided
+            </p>
+            <small>Member Since </small> {{ object.owner.created.date }}
+            <div class="d-grid">
+              <a class="mx-1 text-suceess" type="button">More loads from shipper <span class="btn btn-primary">+</span></a>
+            </div>
+           
+              
+            {% endif %}
+          </div> 
+        </div>
+      </div>
+      
+    </div>
+    <div class="card mx-1">
+      <div class="card-body">
+        <h5 class="card-title">Load Details</h5>
+        <hr class="m-0">
+        <p class="card-text m-0">
+          <span class="fw-bold">Origin </span>{{object.origin.address_1 }} {{ object.origin.address_2 }} {{ object.origin.city }}
+        </p>
+        <p class="card-text m-0">
+          <span class="fw-bold">Destination </span>{{object.destination.address_1 }} {{ object.destination.address_2 }} {{ object.destination.city }}
+        </p>
+        <p class="card-text m-0">
+          <span class="fw-bold">Weight </span>{{ object.weight }}
+        </p>
+        <p class="card-text m-0">
+          <span class="fw-bold">Type </span>{{ object.get_type_display }}
+        </p>
+        <p class="card-text m-0">
+          <span class="fw-bold">Rate </span>{{ object.rate }}
+        </p>
+        <small class="card-text m-0">
+          <span class="fw-bold">Load Posted </span>{{ object.created.date }}
+        </small>
+      </div>
+      <div class="card-footer">
+        {% if object.loadstatus.get_status_display == "Available" %}
+          
+       
+        <p class="m-0 text-suceess fw-bold">
+          Load available for booking
+        </p>
+        <a href="#" class="btn btn-success">Book this Load </a>
+        {% else %}
+        <p class="m-0">Something else here</p>
+        {% endif %}
+      </div>
+     
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
