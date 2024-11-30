@@ -5,5 +5,47 @@
 {{ object }}
 {% endblock head_title %}
 {% block content %}
-<h1>{{obhect}}</h1>
+<div class="py-5"></div>
+<div class="container">
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src={{ object.image.url }}
+              alt="profile image"
+              class="img-fluid rounded-start"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ object | title }}</h5>
+              <hr class="m-0">
+              {% if object.organisation %}
+              <p class="card-text">
+                Company :  {{ object.organisation }}
+               </p>
+              <p class="card-text">
+                Phone:  {{ object.phone_number }}
+               </p>
+
+              {% else %}
+                <p class="text-danger">
+                    Your profile is incomplete <br>
+                    add Company and Phone details
+                </p>
+            <a href="{% url 'main:profile_update' object.pk %}" class="text-primary fs-6">Update my profile <i class="bi bi-pencil"></i></a>
+
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+           <a href="{% url 'main:profile_update' object.pk %}" class="text-primary">Edit profile <i class="bi bi-pencil"></i></a>
+        </div>
+
+      </div>
+
+</div>
+
 {% endblock content %}

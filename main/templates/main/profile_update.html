@@ -1,9 +1,18 @@
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 {% load allauth account %}
 {% block head_title %}
 {{ object }}
 {% endblock head_title %}
 {% block content %}
-<h1>Profile update</h1>
+<div class="py-5"></div>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
 {% endblock content %}
