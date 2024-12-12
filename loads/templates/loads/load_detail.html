@@ -19,7 +19,7 @@
           />
         
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 m-0">
           <div class="card-body">
             <h5 class="card-title m-0">Shipper Details</h5>
             <p class="card-text m-0">
@@ -48,9 +48,14 @@
             {% endif %}
           </div> 
         </div>
+        <p class="px-5 m-0"><span class="text-primary">Member Since: </span>{{ object.owner.created.date }}</p>
+        <hr class="m-0">
+        <a href="" class="px-5 mt-3">More loads from shipper   <span class="fs-3 ms-2"><i class="bi bi-plus btn btn-primary"></i></span></a>
+        <p class="px-5  fw-bold m-0 mb-0">Load Status: {{ object.loadstatus.get_status_display}}</p>
+
       </div>
       
-    </div>
+    </div> 
     <div class="card mx-1">
       <div class="card-body">
         <h5 class="card-title">Load Details</h5>
@@ -77,18 +82,102 @@
       <div class="card-footer">
         {% if object.loadstatus.get_status_display == "Available" %}
           
-       
+        {% if object.owner == user.profile %}
+            <p>This load belongs to you</p>
+            <a href="{% url 'loads:load_update' object.id %}" class="btn btn-primary">Update load details</a>
+        {% else %}
         <p class="m-0 text-suceess fw-bold">
           Load available for booking
         </p>
-        <a href="#" class="btn btn-success">Book this Load </a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Book this load
+        </button>
+        {% endif %}          
+        
+        {% elif object.loadstatus.get_status_display == "Delivered" %}
+        {% if object.loadstatus.transporter == user.profile %}
+        <p class="m-0">Load now delievered</p>
+        <p class="m-0">Contact shipper for payment</p>
         {% else %}
-        <p class="m-0">Something else here</p>
+        <p class="m-0">Load now delievered</p>
+        {% endif %}
+        {% elif object.loadstatus.get_status_display  == "In Transit" %}
+        {% if object.loadstatus.transporter == user.profile %}
+        
+        <span type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
+          Cancel booking <i class="bi bi-x-lg btn btn-danger"></i>
+        </span>
+        <span type="button" class="" data-bs-toggle="modal" data-bs-target="#deliveredModal">
+          Mark delivered <i class="bi bi-check-lg btn btn-success"></i>
+        </span>
+        {% else %}
+        <p class="m-0 fs-5">This load in now in Transit</p>
+        <p class="m-0">Transporter: {{ object.loadstatus.transporter.user.username }} {{ object.loadstatus.transporter.organisation }}</p>
+        {% endif %} 
         {% endif %}
       </div>
      
     </div>
   </div>
 
+</div>
+<!-- Modals -->
+
+<!-- Book modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Booking</h1>
+       {{ object.loadstatus.transporter }}
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>You have 48hrs to pick up booked loads</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'loads:book_load' object.id%}" type="button" class="btn btn-primary">Proceed</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Cancel modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="cancelModalLabel">Cancel Booking</h1>
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>You have 48hrs to pick up booked loads</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'loads:cancel_booking' object.id%}" type="button" class="btn btn-primary">Proceed</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delivered modal -->
+<div class="modal fade" id="deliveredModal" tabindex="-1" aria-labelledby="deliveredModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deliveredModalLabel">Mark as delivered</h1>
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Congradulations for another successful delievery</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'loads:mark_delivered' object.id%}" type="button" class="btn btn-primary">Proceed</a>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}

@@ -13,7 +13,7 @@ class HomeView(generic.ListView):
     template_name = 'main/home.html' 
 
     def get_queryset(self):
-        return Load.objects.all()
+        return Load.objects.all()[:6]
     
 class ProfileDetailView(LoginRequiredMixin, generic.DetailView):
     model = Profile
@@ -23,6 +23,7 @@ class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Profile
     template_name = "main/profile_update.html"
     form_class = ProfileForm
+    
 
     def get_success_url(self):
         pk = self.kwargs["pk"]
@@ -31,6 +32,7 @@ class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 # require_POST('POST')
 def incomplete_profile(request, pk):
+    pk=pk
     user = get_object_or_404(Profile, id=request.user.profile.id)
     form = ProfileForm()
     if request.method == 'POST':

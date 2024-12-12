@@ -132,6 +132,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "assets/",
     
 ]
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -153,9 +154,11 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 ACCOUNT_SIGNUP_REDIRECT_URL  = 'main:incomplete_profile'
+
 LOGIN_REDIRECT_URL = 'main:home'
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+ACCOUNT_EMAIL_VERIFICATION = 'none'
