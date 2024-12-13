@@ -58,8 +58,14 @@ def my_loads(request):
 def book_load(request, pk):
     load = get_object_or_404(Load, pk=pk)
     load.loadstatus.status = "I"
-    load.loadstatus.transporter.profile = request.user.profile
+    load.loadstatus.transporter = request.user.profile
+    # print(request.user.profile)
+    # print(load.loadstatus.transporter)
+    # load.loadstatus.transporter.profile = request.user.profile
+    # load.loadstatus.transporter.profile.save()
     load.loadstatus.save()
+    print(request.user.profile)
+    print(load.loadstatus.transporter)
     return redirect('loads:load', pk=pk)
 
 @login_required(login_url="account_login")
@@ -79,11 +85,3 @@ def mark_delivered(request, pk):
     load_status.transporter = request.user.profile
     load_status.save()
     return redirect('loads:load', pk=pk)
-
-
-
-# @login_required(login_url='login')
-# def book_load(request, pk):
-#     
-#     messages.info(request, "Load booked successfully.")
-#     return redirect('loads:load', pk=pk)

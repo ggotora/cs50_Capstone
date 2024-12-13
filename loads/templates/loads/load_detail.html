@@ -11,6 +11,13 @@
   <div class="card-group">
     <div class="card mx-1" style="max-width: 540px;">
       <div class="row g-0">
+        <div class="mx-1">
+          <div class="card-body">
+          <h5 class="card-title my-1">Shipper Details</h5>
+          <hr class="m-0 p  -1">
+        </div>
+        </div>
+      
         <div class="col-md-4">
           <img
             src={{ object.owner.image.url }}
@@ -21,7 +28,6 @@
         </div>
         <div class="col-md-8 m-0">
           <div class="card-body">
-            <h5 class="card-title m-0">Shipper Details</h5>
             <p class="card-text m-0">
               <span class="fw-bold">Contact: </span>{{ object.owner.user.username }}
             </p>
@@ -82,17 +88,17 @@
       <div class="card-footer">
         {% if object.loadstatus.get_status_display == "Available" %}
           
-        {% if object.owner == user.profile %}
+          {% if object.owner == user.profile %}
             <p>This load belongs to you</p>
             <a href="{% url 'loads:load_update' object.id %}" class="btn btn-primary">Update load details</a>
-        {% else %}
-        <p class="m-0 text-suceess fw-bold">
-          Load available for booking
-        </p>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          {% else %}
+            <p class="m-0 text-suceess fw-bold">
+            Load available for booking
+            </p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Book this load
-        </button>
-        {% endif %}          
+          </button>
+          {% endif %}          
         
         {% elif object.loadstatus.get_status_display == "Delivered" %}
         {% if object.loadstatus.transporter == user.profile %}
@@ -111,8 +117,8 @@
           Mark delivered <i class="bi bi-check-lg btn btn-success"></i>
         </span>
         {% else %}
-        <p class="m-0 fs-5">This load in now in Transit</p>
-        <p class="m-0">Transporter: {{ object.loadstatus.transporter.user.username }} {{ object.loadstatus.transporter.organisation }}</p>
+        <p class="m-0 fs-5 d-inline">This load is now in Transit</p>
+        <p class="m-0">Booked by: {{ object.loadstatus.transporter.user }} {{ object.loadstatus.transporter.organisation }}</p>
         {% endif %} 
         {% endif %}
       </div>

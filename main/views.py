@@ -31,8 +31,8 @@ class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
         return reverse_lazy('main:profile', kwargs={'pk':pk})
 
 # require_POST('POST')
-def incomplete_profile(request, pk):
-    pk=pk
+def incomplete_profile(request):
+    # pk=pk
     user = get_object_or_404(Profile, id=request.user.profile.id)
     form = ProfileForm()
     if request.method == 'POST':
@@ -40,7 +40,7 @@ def incomplete_profile(request, pk):
         if form.is_valid():
             object = form.save()
             return redirect(object.get_absolute_url())
-    return render(request, 'main/incomplete_profile.html',{ 'form': form })
+    return render(request, 'main/incomplete_profile.html',{ 'form': form, 'profile': user })
     # user = get_object_or_404(Profile, id=pk)
     # form = ProfileForm(instance=user)
     # if request.method == "POST":
