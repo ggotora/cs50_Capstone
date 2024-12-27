@@ -51,9 +51,9 @@ Home
 
             {% endif %}
             {% if load.loadstatus.get_status_display == "Available" %}
-            <td class="text-truncate">{{ load.loadstatus }} | Book Load</td>
+            <td class="text-truncate text-success">{{ load.loadstatus }} | Book Load</td>
             {% else %}
-            <td class="text-truncate">{{ load.loadstatus }}</td>
+            <td class="text-truncate text-warning">{{ load.loadstatus }}</td>
             {% endif %}
         </tr>
         {% endif %}

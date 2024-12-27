@@ -4,6 +4,9 @@
     {% trans "Sign Out" %}
 {% endblock head_title %}
 {% block content %}
+<div class="py-5"></div>
+<div class="py-2"></div>
+<div class="container">
     {% element h1 %}
         {% trans "Sign Out" %}
     {% endelement %}
@@ -17,9 +20,10 @@
             {{ redirect_field }}
         {% endslot %}
         {% slot actions %}
-            {% element button type="submit" %}
+            {% element button type="submit" class="btn btn-primary" %}
                 {% trans 'Sign Out' %}
             {% endelement %}
         {% endslot %}
     {% endelement %}
+</div>
 {% endblock content %}

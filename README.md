@@ -10,7 +10,9 @@ Using Python, JavaScript, HTML, and CSS, complete the implementation of a webapp
 - **New Profile:** A new profile is automatically created for all new user and all new users are asked to complete their profile giving their company details. 
 - **New Load:** Users who are signed in should be able to post a new load 
 - **Edit load:** Only the user that created the load is able to edit the load 
-- **Book load:** Only the user that created the load is able to edit the load 
+- **Book load:** Users either than owner can book a load for shipping 
+- **Cancel booking:** Users can cancel booking within 24hrs 
+- **Mark load delivered:** Users can mark load as delivered once shipment is done 
 - **All Posts:** The “All Posts” link in the navigation bar should take the user to a page where they can see all posts from all users, with the most recent posts first.
     - Each post should include the username of the poster, the post content itself, the date and time at which the post was made, and the number of “likes” the post has (this will be 0 for all posts until you implement the ability to “like” a post later).
     

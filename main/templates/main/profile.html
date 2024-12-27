@@ -27,6 +27,10 @@
               <p class="card-text">
                 Phone:  {{ object.phone_number }}
                </p>
+              <p class="card-text">
+                Email:  {{ object.user.email }}
+               </p>
+               <a href="{% url 'main:home' %}" class="me-3 mt-3 btn">Home</a><a href="{% url 'loads:loads' %}" class="btn mt-3">Listings</a>
 
               {% else %}
                 <p class="text-danger">
