@@ -47,7 +47,7 @@
             </p>
             <small>Member Since </small> {{ object.owner.created.date }}
             <div class="d-grid">
-              <a class="mx-1 text-suceess" type="button">More loads from shipper <span class="btn btn-primary">+</span></a>
+             
             </div>
            
               
@@ -56,7 +56,7 @@
         </div>
         <p class="px-5 m-0"><span class="text-primary">Member Since: </span>{{ object.owner.created.date }}</p>
         <hr class="m-0">
-        <a href="" class="px-5 mt-3">More loads from shipper   <span class="fs-3 ms-2"><i class="bi bi-plus btn btn-primary"></i></span></a>
+        <a href="{% url 'loads:shipper_loads' object.owner.id %}" class="px-5 mt-3">More loads from shipper   <span class="fs-3 ms-2"><i class="bi bi-plus btn btn-primary"></i></span></a>
         <p class="px-5  fw-bold m-0 mb-0">Load Status: {{ object.loadstatus.get_status_display}}</p>
 
       </div>
@@ -125,7 +125,10 @@
      
     </div>
   </div>
-
+  <div class="d-grid gap-2 py-5 px-5">
+    <a href="{% url 'loads:loads' %}" class="btn btn-tertiary" type="button">Load listing</a>
+  </div>
+  
 </div>
 <!-- Modals -->
 
@@ -158,7 +161,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>You have 48hrs to pick up booked loads</p>
+        <p>You can still cancel this load</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

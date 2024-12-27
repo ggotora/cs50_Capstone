@@ -1,0 +1,67 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load static %}
+{% load allauth account %}
+{% block head_title %}
+My loads 
+{% endblock head_title %}
+{% block content %}
+<div class="py-5"></div>
+<div class="container">
+    <h1 class="h4 text-success">Loads by 
+        {% if owner.organisation %}
+        {{owner.organisation}}
+        {% else %}
+        {{ owner.user }}
+        {% endif %}
+       
+    </h1>
+    {% if loads %}
+    <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead class="line bg-green">
+            <tr>
+              <th scope="col">Origin</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Type</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+                 
+            {% for load in loads %}
+              {% if load.loadstatus.get_status_display != "Delivered" %}  
+           <tr class="table-row cursor-auto" data-href="{% url 'loads:load' load.id %}" >
+                
+                <td class="text-truncate">{{ load.origin }}</td>
+                <td class="text-truncate">{{ load.destination }}</td>
+                <td class="text-truncate">{{ load.weight }}</td>
+                <td class="text-truncate">{{ load.get_type_display }}</td>
+                {% if user.is_authenticated %}
+                  <td class="text-truncate">{{ load.rate }}</td>
+                  {% else %}
+                <td class="text-truncate"><a href="#hello">Sign Up</a><i class="bi bi-box-arrow-in-right"></i></td>
+      
+                {% endif %}
+                {% if load.loadstatus.get_status_display == "Available" %}
+                <td class="text-truncate">{{ load.loadstatus }} | Book Load</td>
+                {% else %}
+                <td class="text-truncate">{{ load.loadstatus }}</td>
+                {% endif %}
+            </tr>
+            {% endif %}
+      
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-center fs-3">You have no loads postings </p>
+      <a href="{% url 'loads:loads' %}" class="text-center d-block fs-4"><i class="bi bi-arrow-counterclockwise text-success"></i></a>
+      {% endif %}
+    </div>
+<script src="{% static 'js/loads.js' %}"></script>
+
+{% endblock content %}

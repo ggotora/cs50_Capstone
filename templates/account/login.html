@@ -1,10 +1,13 @@
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 {% load allauth account %}
 {% block head_title %}
     {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content %}
+    <div class="py-5"></div>
+    <div class="container">
     {% element h1 %}
         {% trans "Sign In" %}
     {% endelement %}
@@ -22,12 +25,11 @@
         {% element form form=form method="post" action=login_url tags="entrance,login" %}
             {% slot body %}
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
+                {{ form | crispy }}
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
-                {% element button type="submit" tags="prominent,login" %}
+                {% element button type="submit" class="btn btn-primary" tags="prominent,login" %}
                     {% trans "Sign In" %}
                 {% endelement %}
             {% endslot %}
@@ -52,6 +54,7 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+</div>
 {% endblock content %}
 {% block extra_body %}
     {{ block.super }}

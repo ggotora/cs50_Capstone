@@ -3,6 +3,7 @@ from django.views import generic
 from .models import Load, Location, LoadStatus
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from main.models import Profile
 
 class LocationDetailView(LoginRequiredMixin,  generic.DetailView):
     model = Location
@@ -54,15 +55,17 @@ def my_loads(request):
     my_loads = Load.objects.filter(owner=request.user.profile)
     return render(request, 'loads/my_loads.html', {'my_loads': my_loads})
 
+@login_required(login_url="account_login")
+def shipper_loads(request, owner_id):
+    loads = Load.objects.filter(owner=owner_id)
+    owner = get_object_or_404(Profile, pk=owner_id)
+    return render(request, 'loads/shipper_loads.html', {'loads': loads, "owner": owner})
+
 @login_required(login_url='account_login')
 def book_load(request, pk):
     load = get_object_or_404(Load, pk=pk)
     load.loadstatus.status = "I"
     load.loadstatus.transporter = request.user.profile
-    # print(request.user.profile)
-    # print(load.loadstatus.transporter)
-    # load.loadstatus.transporter.profile = request.user.profile
-    # load.loadstatus.transporter.profile.save()
     load.loadstatus.save()
     print(request.user.profile)
     print(load.loadstatus.transporter)
