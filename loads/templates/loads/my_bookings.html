@@ -1,0 +1,57 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load static %}
+{% load allauth account %}
+{% block head_title %}
+My Bookings
+{% endblock head_title %}
+{% block content %}
+<div class="py-5"></div>
+<div class="container">
+    <h1>Bookings</h1>
+    {{ bookings }}
+    {% if bookings %}
+    <div class="table-responsive">
+        <table class="table table-sm">
+          <thead class="line bg-green">
+            <tr>
+              <th scope="col">Origin</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Type</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delivered / Cancel </th>
+            </tr>
+        </thead>
+        <tbody>
+                 
+            {% for booking in bookings %}
+
+           <tr class="table-row cursor-auto">
+                <td class="text-truncate">{{ booking.load.origin }}</td>
+                <td class="text-truncate">{{ booking.load.destination }}</td>
+                <td class="text-truncate">{{ booking.load.weight }}</td>
+                <td class="text-truncate">{{ booking.load.get_type_display }}</td>
+                <td class="text-truncate">{{ booking.load.rate }}</td>
+                <td class="text-truncate">{{ booking.get_status_display }}</td>
+                <td class="text-truncate">
+                    <a href="{% url 'loads:mark_delivered' booking.transporter.id %}" class="bi bi-check-lg btn btn-primary me-2"></a> / 
+                    <a href="{% url 'loads:cancel_booking' booking.load.id %}" class="ms-2 btn btn-danger bi bi-x-lg"></a>
+                <td>
+                
+            </tr>
+          
+      
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-center fs-3">You have no loads postings </p>
+      <a href="{% url 'loads:loads' %}" class="text-center d-block fs-4"><i class="bi bi-arrow-counterclockwise text-success"></i></a>
+      {% endif %}
+    </div>
+<!-- <script src="{% static 'js/loads.js' %}"></script> -->
+
+{% endblock content %}

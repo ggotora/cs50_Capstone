@@ -46,7 +46,7 @@
                             <li><a class="dropdown-item" href="{% url 'main:profile' user.profile.id %}">Profile </a></li>
                             <li><a class="dropdown-item" href="{% url 'main:profile_update' user.profile.id %}">Update Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="">My bookings</a></li>
+                            <li><a class="dropdown-item" href="{% url 'loads:bookings' user.username %}">My bookings</a></li>
                           </ul>
                         </li>
                         <li class="nav-item">
@@ -84,7 +84,6 @@
             
             {% block content %}
             {% endblock content %}
-            <div class="pt-5"></div>
             <footer class="footer-section">
                 <div class="container relative">
     

@@ -1,18 +1,28 @@
 # CS50_CAPSTONE
 Design a site where truckers can get loads online and shippers can post their loads
 ![](posts.png)
-
+### Distinctiveness and Complexity
+ The LoadMaster WebApp is a online loadboard platform to
+connect shippers, brokers, and carriers to find loads for transporting freight. Shippers and brokers can post available loads and carriers can view load listings, book a load, cancel booking within 24hrs, change status to delivered 
+- the Project has two apps, main and loads
+    1. the main app takes care of user profiles and home screen 
+        - main app has User and Profile models
+    2. The loads app is for location and load listings, details, updates and deletion
+        - loads app has 3 models, Location, Load and LoadStatus
 
 ### Specification
 <hr>
 Using Python, JavaScript, HTML, and CSS, complete the implementation of a webapp that allows user to post available loads, book a load, cancel booking within 24hrs, change status to delivered
 
-- **New Profile:** A new profile is automatically created for all new user and all new users are asked to complete their profile giving their company details. 
+- **Main:Profile:** A new profile is automatically created for all new user. Users can sign in or sign up using third party Google authentication 
+- **Main:incomplete_profile** all new users are asked to complete their profile giving their company details. 
+- **Main:update_profile** Existing profile can update personal information - organisation, phone number, image 
 - **New Load:** Users who are signed in should be able to post a new load 
 - **Edit load:** Only the user that created the load is able to edit the load 
 - **Book load:** Users either than owner can book a load for shipping 
 - **Cancel booking:** Users can cancel booking within 24hrs 
 - **Mark load delivered:** Users can mark load as delivered once shipment is done 
+
 - **All Posts:** The “All Posts” link in the navigation bar should take the user to a page where they can see all posts from all users, with the most recent posts first.
     - Each post should include the username of the poster, the post content itself, the date and time at which the post was made, and the number of “likes” the post has (this will be 0 for all posts until you implement the ability to “like” a post later).
     

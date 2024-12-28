@@ -88,3 +88,10 @@ def mark_delivered(request, pk):
     load_status.transporter = request.user.profile
     load_status.save()
     return redirect('loads:load', pk=pk)
+
+@login_required
+def my_bookings(request, user):
+    bookings = LoadStatus.objects.filter(transporter__user__username=user, status="I")
+    print(bookings)
+    return render(request, 'loads/my_bookings.html', {'bookings': bookings})
+

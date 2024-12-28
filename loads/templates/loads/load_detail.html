@@ -18,7 +18,7 @@
         </div>
         </div>
       
-        <div class="col-md-4">
+        <div class="col-md-4 p-3">
           <img
             src={{ object.owner.image.url }}
             alt="Profile image"
@@ -106,6 +106,7 @@
         <p class="m-0">Contact shipper for payment</p>
         {% else %}
         <p class="m-0">Load now delievered</p>
+        <a class="btn btn-warming" href="{% url 'loads:cancel_booking' object.id %}">Reverse status to Available</a>
         {% endif %}
         {% elif object.loadstatus.get_status_display  == "In Transit" %}
         {% if object.loadstatus.transporter == user.profile %}
