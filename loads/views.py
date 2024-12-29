@@ -27,7 +27,8 @@ def add_load_location(request):
     location= Location(address_1=address_1, address_2=address_2, city=city, country=field_country)
     location.save()
     return redirect('loads:new_load')
-  
+
+@login_required
 def load_listing(request):
     load_type = request.GET.get('load_type')
     loads = Load.objects.order_by('-created')

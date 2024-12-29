@@ -1,5 +1,5 @@
 # CS50_CAPSTONE
-Design a site where truckers can get loads online and shippers can post their loads
+Design a site where carriers can get loads online and shippers/brokers can post their loads
 ![](posts.png)
 ### Distinctiveness and Complexity
  The LoadMaster WebApp is a online loadboard platform to
@@ -12,7 +12,7 @@ connect shippers, brokers, and carriers to find loads for transporting freight. 
 
 ### Specification
 <hr>
-Using Python, JavaScript, HTML, and CSS, complete the implementation of a webapp that allows user to post available loads, book a load, cancel booking within 24hrs, change status to delivered
+Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post available loads, book a load, cancel booking within 24hrs, change status to delivered
 
 - **main:home:** A home screen with a welcome page. Unauthenticated users can see the latest 5 listings without rates and shipper contact information
 - **main:login:** Existing users can login with username and password or third party Google credentials 
@@ -21,6 +21,7 @@ Using Python, JavaScript, HTML, and CSS, complete the implementation of a webapp
 - **main:profile:** Authenticated users can view their profile page with user details: organisation, phone number, email and image 
 - **main:update_profile** SExisting profile can update personal information - organisation, phone number, image, email 
 - **loads:loads:** Users who are signed in should be able to see all load listings with <span style="color:green;">"Available"</span> status
+    - users can see filtered results for load of type <spam style="color:orange"> "All", "Flatbed", "Reefer", "Van" or "Other" </span>
 - **loads:new_load:** Signed in users can post new loads and add a <span style="color: green">new location</span> if the location they need is not listed in <span style="color:orange">origin</span> and <span style="color:orange">destination</span> fields
 - **loads:load_detail:** 
     - Signed in users can view shipper information and load details
