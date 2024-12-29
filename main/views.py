@@ -14,7 +14,7 @@ class HomeView(generic.ListView):
     template_name = 'main/home.html' 
 
     def get_queryset(self):
-        return Load.objects.all()[:5]
+        return Load.objects.filter(loadstatus__status="A")[:5]
     
 class ProfileDetailView(LoginRequiredMixin, generic.DetailView):
     model = Profile

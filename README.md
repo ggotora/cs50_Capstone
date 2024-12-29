@@ -14,14 +14,24 @@ connect shippers, brokers, and carriers to find loads for transporting freight. 
 <hr>
 Using Python, JavaScript, HTML, and CSS, complete the implementation of a webapp that allows user to post available loads, book a load, cancel booking within 24hrs, change status to delivered
 
-- **Main:Profile:** A new profile is automatically created for all new user. Users can sign in or sign up using third party Google authentication 
-- **Main:incomplete_profile** all new users are asked to complete their profile giving their company details. 
-- **Main:update_profile** Existing profile can update personal information - organisation, phone number, image 
-- **New Load:** Users who are signed in should be able to post a new load 
-- **Edit load:** Only the user that created the load is able to edit the load 
-- **Book load:** Users either than owner can book a load for shipping 
-- **Cancel booking:** Users can cancel booking within 24hrs 
-- **Mark load delivered:** Users can mark load as delivered once shipment is done 
+- **main:home:** A home screen with a welcome page. Unauthenticated users can see the latest 5 listings without rates and shipper contact information
+- **main:login:** Existing users can login with username and password or third party Google credentials 
+- **main:signup:** A new profile is automatically created for all newly signed user. Users can optionally sign up using third party Google authentication 
+- **main:incomplete_profile** all new users are automatically directed to this page to complete their profile giving more company details.
+- **main:profile:** Authenticated users can view their profile page with user details: organisation, phone number, email and image 
+- **main:update_profile** SExisting profile can update personal information - organisation, phone number, image, email 
+- **loads:loads:** Users who are signed in should be able to see all load listings with <span style="color:green;">"Available"</span> status
+- **loads:new_load:** Signed in users can post new loads and add a <span style="color: green">new location</span> if the location they need is not listed in <span style="color:orange">origin</span> and <span style="color:orange">destination</span> fields
+- **loads:load_detail:** 
+    - Signed in users can view shipper information and load details
+    - if loadStatus is <span style="color:green;">Available</span>, users other than owner that posted the load, can book the load for shipping, in which case the loadStatus is changed to <span style="color:green">"In Transit"</span>
+    - Once loadStatus is <span style="color:green">"In Transit"</span> the user can ship the load and change loadStatus to <span style="color:green">"Delivered"</span> Delivered. 
+    - NB: The user can only cancel <span style="color:green">"In Transit"</span> or booked loads within 24 hours while owner can unbook the load and change loadStatus to <span style="color:green">"Available"</span> at any time
+    - Clicking on "more loads from shipper" button takes user to load listings from the shipper
+- **loads:load_update:** Owner can update any load they posted 
+- **loads:my_bookings** Users see all the loads that they booked and are "In <span style="color:green">Transit"</span> and <span style="color:green">"Delivered"</span>. Clicking any load listed will take then to load_details
+- **loads:my_loads** Users can view all the loads they have posted. Clicking a specific load will take them to load_detail page. 
+- **loads:shipper_details**  
 
 - **All Posts:** The “All Posts” link in the navigation bar should take the user to a page where they can see all posts from all users, with the most recent posts first.
     - Each post should include the username of the poster, the post content itself, the date and time at which the post was made, and the number of “likes” the post has (this will be 0 for all posts until you implement the ability to “like” a post later).

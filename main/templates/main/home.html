@@ -38,7 +38,6 @@ Home
         <tbody>
             
         {% for load in load_list %}
-            {% if load.loadstatus.get_status_display != "Delivered" %}  
         <tr class="table-row cursor-auto" data-href="{% url 'loads:load' load.id %}" >
             <td class="text-truncate">{{ load.origin }}</td>
             <td class="text-truncate">{{ load.destination }}</td>
@@ -46,18 +45,12 @@ Home
             <td class="text-truncate">{{ load.get_type_display }}</td>
             {% if user.is_authenticated %}
                 <td class="text-truncate">{{ load.rate }}</td>
-                {% else %}
+            {% else %}
             <td class="text-truncate"><a href="#hello">Sign Up</a><i class="bi bi-box-arrow-in-right"></i></td>
 
             {% endif %}
-            {% if load.loadstatus.get_status_display == "Available" %}
             <td class="text-truncate text-success">{{ load.loadstatus }} | Book Load</td>
-            {% else %}
-            <td class="text-truncate text-warning">{{ load.loadstatus }}</td>
-            {% endif %}
         </tr>
-        {% endif %}
-
         {% endfor %}
         </tbody>
     </table>
