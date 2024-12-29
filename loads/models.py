@@ -66,8 +66,6 @@ class LoadStatus(models.Model):
     def pub_within_24(self):
         return timezone.now() - self.updated <=  datetime.timedelta(hours=24)
     
-    def time_left(self):
-        return datetime.timedelta(hours=24) - (timezone.now() - self.updated)
 
 def create_load(sender, created,instance,  *args, **kwargs):
     if created:

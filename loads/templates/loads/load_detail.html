@@ -110,16 +110,23 @@
         {% endif %}
         {% elif object.loadstatus.get_status_display  == "In Transit" %}
         {% if object.loadstatus.transporter == user.profile %}
-        
-        <span type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
-          Cancel booking <i class="bi bi-x-lg btn btn-danger"></i>
-        </span>
-        <span type="button" class="" data-bs-toggle="modal" data-bs-target="#deliveredModal">
-          Mark delivered <i class="bi bi-check-lg btn btn-success"></i>
-        </span>
+          {% if object.loadstatus.pub_within_24 %}
+            <span type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
+              Cancel booking <i class="bi bi-x-lg btn btn-danger"></i>
+            </span>
+            {% else %}
+            <span type="button">
+              Load booked more than 24hrs | Contact owner for any challenges  </i>
+            </span>
+
+          {% endif %}
+          
+          <span type="button" class="" data-bs-toggle="modal" data-bs-target="#deliveredModal">
+            Mark delivered <i class="bi bi-check-lg btn btn-success"></i>
+          </span>
         {% else %}
-        <p class="m-0 fs-5 d-inline">This load is now in Transit</p>
-        <p class="m-0">Booked by: {{ object.loadstatus.transporter.user }} {{ object.loadstatus.transporter.organisation }}</p>
+          <p class="m-0 fs-5 d-inline">This load is now in Transit</p>
+          <p class="m-0">Booked by: {{ object.loadstatus.transporter.user }} {{ object.loadstatus.transporter.organisation }}</p>
         {% endif %} 
         {% endif %}
       </div>
