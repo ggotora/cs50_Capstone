@@ -27,10 +27,23 @@ def add_load_location(request):
     location= Location(address_1=address_1, address_2=address_2, city=city, country=field_country)
     location.save()
     return redirect('loads:new_load')
-
-class LoadListView(generic.ListView):
-    model = Load
-    template_name = "loads/loads.html"
+  
+def load_listing(request):
+    load_type = request.GET.get('load_type')
+    loads = Load.objects.order_by('-created')
+    if load_type == "F":
+        loads = Load.objects.filter(type="F")
+    if load_type == "R":
+        loads = Load.objects.filter(type="R")
+    if load_type == "S":
+        loads = Load.objects.filter(type="S")
+    if load_type == "V":
+        loads = Load.objects.filter(type="V")
+    if load_type == "O":
+        loads = Load.objects.filter(type="O")
+    context = {'load_list': loads}
+    return render(request, 'loads/loads.html', context)
+    
 
 class LoadUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Load
@@ -67,8 +80,6 @@ def book_load(request, pk):
     load.loadstatus.status = "I"
     load.loadstatus.transporter = request.user.profile
     load.loadstatus.save()
-    print(request.user.profile)
-    print(load.loadstatus.transporter)
     return redirect('loads:load', pk=pk)
 
 @login_required(login_url="account_login")
@@ -92,6 +103,5 @@ def mark_delivered(request, pk):
 @login_required
 def my_bookings(request, user):
     bookings = LoadStatus.objects.filter(transporter__user__username=user, status="I")
-    print(bookings)
     return render(request, 'loads/my_bookings.html', {'bookings': bookings})
 

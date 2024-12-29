@@ -3,7 +3,8 @@ from . import views
 
 app_name = "loads"
 urlpatterns = [
-    path('', views.LoadListView.as_view(), name="loads"), 
+    # path('', views.LoadListView.as_view(), name="loads"), 
+    path('', views.load_listing, name="loads"), 
     path('load/<int:pk>', views.LoadDetailView.as_view(), name='load'),
     path('add_load_location', views.add_load_location, name='add_load_location'), 
     path("location_detail/<int:pk>", views.LocationDetailView.as_view(), name="location_detail"), 
