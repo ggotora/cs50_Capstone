@@ -7,8 +7,9 @@ My Bookings
 {% endblock head_title %}
 {% block content %}
 <div class="py-5"></div>
-<div class="container">
+<div class="container-fluid">
     <h1>Bookings</h1>
+    <p class="text-danger">Bookings over 24hr can only be cancel by contacting shipper</p>
     {% if bookings %}
     <div class="table-responsive">
         <table class="table table-sm">
@@ -27,7 +28,6 @@ My Bookings
         <tbody>
                  
             {% for booking in bookings %}
-
            <tr class="table-row cursor-auto">
                 <td class="text-truncate">{{ booking.load.origin }}</td>
                 <td class="text-truncate">{{ booking.load.destination }}</td>
@@ -38,7 +38,11 @@ My Bookings
                 <td class="text-truncate">{{ booking.get_status_display }}</td>
                 <td class="text-truncate">
                     <a href="{% url 'loads:mark_delivered' booking.transporter.id %}" class="bi bi-check-lg btn btn-primary me-2"></a> / 
+                    {% if booking.pub_within_24 %}
                     <a href="{% url 'loads:cancel_booking' booking.load.id %}" class="ms-2 btn btn-danger bi bi-x-lg"></a>
+                      {% else %}
+                      <span>Contact owner to cancel</span>
+                    {% endif %}
                 <td>
                 
             </tr>

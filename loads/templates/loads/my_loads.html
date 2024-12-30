@@ -7,8 +7,8 @@ My loads
 {% endblock head_title %}
 {% block content %}
 <div class="py-5"></div>
-<div class="container">
-    <h1>Posted loads</h1>
+<div class="container-fluid">
+    <h1 class="h4 py-3">{{ user.username | capfirst }}'s  posted loads</h1>
     {% if my_loads %}
     <div class="table-responsive">
         <table class="table table-hover table-sm">

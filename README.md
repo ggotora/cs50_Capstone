@@ -1,6 +1,6 @@
 # CS50_CAPSTONE
 Design a site where carriers can get loads online and shippers/brokers can post their loads
-![](posts.png)
+![](home.png)
 ### Distinctiveness and Complexity
  The LoadMaster WebApp is a online loadboard platform to
 connect shippers, brokers, and carriers to find loads for transporting freight. Shippers and brokers can post available loads and carriers can view load listings, book a load, cancel booking within 24hrs, change status to delivered 
@@ -33,18 +33,6 @@ Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post avail
 - **loads:my_bookings** Users see all the loads that they booked and are "In <span style="color:green">Transit"</span> and <span style="color:green">"Delivered"</span>. Clicking any load listed will take then to load_details
 - **loads:my_loads** Users can view all the loads they have posted. Clicking a specific load will take them to load_detail page. 
 - **loads:shipper_details** User can see a list of loads posted by a specific shipper/broker  
-
-
--**Pagination:** On any page that displays posts, posts should only be displayed 10 on a page. If there are more than ten posts, a “Next” button should appear to take the user to the next page of posts (which should be older than the current page of posts). If not on the first page, a “Previous” button should appear to take the user to the previous page of posts as well.
-
--**Edit Post:** Users should be able to click an “Edit” button or link on any of their own posts to edit that post.
-   - when a user clicks “Edit” for one of their own posts, the content of their post should be replaced with a textarea where the user can edit the content of their post.
-   - The user should then be able to “Save” the edited post. Using JavaScript, you should be able to achieve this without requiring a reload of the entire page.
-   - For security, ensure that your application is designed such that it is not possible for a user, via any route, to edit another user’s posts.
-
--**"Like" and "Unlike":** Users should be able to click a button or link on any post to toggle whether or not they “like” that post.
-- Using JavaScript, you should asynchronously let the server know to update the like count (as via a call to fetch) and then update the post’s like count displayed on the page, without requiring a reload of the entire page.
-
 
 ## Built With
 
