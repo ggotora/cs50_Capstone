@@ -36,9 +36,12 @@ Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post avail
 <hr>
 
 ## Installation 
+
 1. clone repository
+
 ```bash 
     git clone git@github.com:ggotora/cs50_Capstone.git
+```ß
 
 2. Run the following commands 
 
