@@ -45,7 +45,7 @@ Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post avail
 $ cd cs50_Capstone  
 $  pip install -r requirements.txt
 $ python manage.py runserver
-
+```
 <hr>
 ## Built With
 
