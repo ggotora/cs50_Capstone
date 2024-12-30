@@ -54,7 +54,9 @@ Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post avail
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/ggotora/CS50-Project4/issues/1).
+Feel free to check the [issues page]
+(https://github.com/ggotora/cs50_Capstone/issues/1)
+
 
 ## Show your support
 
