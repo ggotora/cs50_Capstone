@@ -33,7 +33,19 @@ Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post avail
 - **loads:my_bookings** Users see all the loads that they booked and are "In <span style="color:green">Transit"</span> and <span style="color:green">"Delivered"</span>. Clicking any load listed will take then to load_details
 - **loads:my_loads** Users can view all the loads they have posted. Clicking a specific load will take them to load_detail page. 
 - **loads:shipper_details** User can see a list of loads posted by a specific shipper/broker  
+<hr>
+## Installation 
+1. clone repository
+```bash 
+    git clone git@github.com:ggotora/cs50_Capstone.git
 
+2. Run the following commands 
+
+```bash
+$ cd cs50_Capstone  
+$  pip install -r requirements.txt
+$ python manage.py runserver
+<hr>
 ## Built With
 
 - Django, Python, Javascript
