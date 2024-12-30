@@ -34,6 +34,7 @@ Using Python, JavaScript, HTML, and CSS, a webapp that allows user to post avail
 - **loads:my_loads** Users can view all the loads they have posted. Clicking a specific load will take them to load_detail page. 
 - **loads:shipper_details** User can see a list of loads posted by a specific shipper/broker  
 <hr>
+
 ## Installation 
 1. clone repository
 ```bash 
